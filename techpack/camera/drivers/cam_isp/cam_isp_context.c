@@ -3540,7 +3540,7 @@ static int __cam_isp_ctx_rdi_only_sof_in_bubble_applied(
 		 * If no pending req in epoch, this is an error case.
 		 * The recovery is to go back to sof state
 		 */
-		CAM_ERR(CAM_ISP, "No wait request");
+		CAM_ERR(CAM_ISP, "Ctx:%d No wait request", ctx->ctx_id);
 		ctx_isp->substate_activated = CAM_ISP_CTX_ACTIVATED_SOF;
 
 		/* Send SOF event as empty frame*/

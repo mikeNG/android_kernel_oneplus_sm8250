@@ -116,6 +116,11 @@ struct cam_actuator_ctrl_t {
 	struct intf_params bridge_intf;
 	uint32_t last_flush_req;
 	uint32_t open_cnt;
+
+	bool is_actuator_ready;
+	struct cam_sensor_i2c_reg_array poll_register;
+	enum camera_sensor_i2c_type addr_type;
+	enum camera_sensor_i2c_type data_type;
 };
 
 #endif /* _CAM_ACTUATOR_DEV_H_ */

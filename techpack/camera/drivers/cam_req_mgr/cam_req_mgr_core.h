@@ -35,7 +35,7 @@
 
 #define MAXIMUM_LINKS_PER_SESSION  7
 
-#define MAXIMUM_RETRY_ATTEMPTS 2
+#define MAXIMUM_RETRY_ATTEMPTS 6
 
 #define MINIMUM_WORKQUEUE_SCHED_TIME_IN_MS 5
 
@@ -350,6 +350,7 @@ struct cam_req_mgr_connected_device {
  *                         as part of shutdown.
  * @sof_timestamp_value  : SOF timestamp value
  * @prev_sof_timestamp   : Previous SOF timestamp value
+ * @is_first_req         : Flag to indicate about link first req
  * @dual_trigger         : Links needs to wait for two triggers prior to
  *                         applying the settings
  * @trigger_cnt          : trigger count value per device initiating the trigger
@@ -386,6 +387,7 @@ struct cam_req_mgr_core_link {
 	bool                                 is_shutdown;
 	uint64_t                             sof_timestamp;
 	uint64_t                             prev_sof_timestamp;
+	bool                                 is_first_req;
 	bool                                 dual_trigger;
 	uint32_t    trigger_cnt[CAM_REQ_MGR_MAX_TRIGGERS];
 	bool                                 skip_wd_validation;

@@ -970,6 +970,7 @@ int32_t cam_csiphy_core_cfg(void *phy_dev,
 		if (csiphy_dev->csiphy_state != CAM_CSIPHY_START) {
 			CAM_ERR(CAM_CSIPHY, "Not in right state to stop : %d",
 				csiphy_dev->csiphy_state);
+			rc = -EINVAL;
 			goto release_mutex;
 		}
 
@@ -1029,6 +1030,15 @@ int32_t cam_csiphy_core_cfg(void *phy_dev,
 	case CAM_RELEASE_DEV: {
 		int32_t offset;
 		struct cam_release_dev_cmd release;
+
+		if (csiphy_dev->csiphy_state == CAM_CSIPHY_START) {
+			rc = cam_csiphy_disable_hw(csiphy_dev);
+			if (rc < 0)
+				CAM_ERR(CAM_CSIPHY, "Failed in csiphy release");
+			rc = cam_cpas_stop(csiphy_dev->cpas_handle);
+			if (rc < 0)
+				CAM_ERR(CAM_CSIPHY, "de-voting CPAS: %d", rc);
+		}
 
 		if (!csiphy_dev->acquire_count) {
 			CAM_ERR(CAM_CSIPHY, "No valid devices to release");
@@ -1210,6 +1220,8 @@ int32_t cam_csiphy_core_cfg(void *phy_dev,
 			&ahb_vote, &axi_vote);
 		if (rc < 0) {
 			CAM_ERR(CAM_CSIPHY, "voting CPAS: %d", rc);
+			if (rc == -EALREADY)
+				cam_cpas_stop(csiphy_dev->cpas_handle);
 			goto release_mutex;
 		}
 

@@ -785,7 +785,7 @@ int cam_flash_i2c_apply_setting(struct cam_flash_ctrl *fctrl,
 					CCI_MASTER)) {
 					CAM_WARN(CAM_FLASH,
 						"CCI HW is in reset mode: Reapplying Init settings");
-					usleep_range(1000, 1010);
+					usleep_range(5000, 5010);
 					rc = cam_sensor_util_i2c_apply_setting
 					(&(fctrl->io_master_info), i2c_list);
 				}
