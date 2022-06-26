@@ -1,28 +1,23 @@
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
-        dtbo-$(CONFIG_ARCH_KONA) += \
-                kona-cdp-overlay.dtbo \
-                kona-cdp-lcd-overlay.dtbo \
-                kona-mtp-overlay.dtbo \
-                kona-mtp-ws-overlay.dtbo \
-		kona-sa-mtp-overlay.dtbo \
-                kona-xr-overlay.dtbo \
-                kona-rumi-overlay.dtbo \
-                kona-qrd-overlay.dtbo \
-		kona-xrfusion-overlay.dtbo \
-		kona-xrfusion-ult-overlay.dtbo \
-                kona-hdk-overlay.dtbo
+dtbo-$(CONFIG_ARCH_KONA) += kona-mtp-19821-overlay.dtbo
+dtbo-$(CONFIG_ARCH_KONA) += kona-mtp-19855-overlay.dtbo
 
-kona-cdp-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-cdp-lcd-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-mtp-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-mtp-ws-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-sa-mtp-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-xr-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-rumi-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-qrd-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-xrfusion-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-xrfusion-ult-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
-kona-hdk-overlay.dtbo-base := kona.dtb kona-v2.dtb kona-v2.1.dtb
+dtbo-$(CONFIG_ARCH_KONA) += kona-mtp-19811-overlay.dtbo
+
+dtbo-$(CONFIG_ARCH_KONA) += kona-mtp-19805-overlay.dtbo
+dtbo-$(CONFIG_ARCH_KONA) += kona-mtp-20809-overlay.dtbo
+
+dtbo-$(CONFIG_ARCH_KONA) += kona-mtp-20828-overlay.dtbo
+
+kona-mtp-19821-overlay.dtbo-base := 19821/kona.dtb 19821/kona-v2.dtb 19821/kona-v2.1.dtb
+kona-mtp-19855-overlay.dtbo-base := 19855/kona.dtb 19855/kona-v2.dtb 19855/kona-v2.1.dtb
+
+kona-mtp-19811-overlay.dtbo-base := 19811/kona.dtb 19811/kona-v2.dtb 19811/kona-v2.1.dtb
+
+kona-mtp-19805-overlay.dtbo-base := 19805/kona.dtb 19805/kona-v2.dtb 19805/kona-v2.1.dtb
+kona-mtp-20809-overlay.dtbo-base := 20809/kona.dtb 20809/kona-v2.dtb 20809/kona-v2.1.dtb
+
+kona-mtp-20828-overlay.dtbo-base := 20828/kona.dtb 20828/kona-v2.dtb 20828/kona-v2.1.dtb
 else
 dtb-$(CONFIG_ARCH_KONA) += kona-rumi.dtb \
         kona-mtp.dtb \
